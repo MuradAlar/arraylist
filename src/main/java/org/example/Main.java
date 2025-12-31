@@ -1,5 +1,8 @@
 package org.example;
 
+import java.util.LinkedList;
+import java.util.List;
+
 public class Main {
     public static void main(String[] args) {
         MyArrayList<Integer> list = new MyArrayList<>();
@@ -15,5 +18,19 @@ public class Main {
         list.remove(2);
         System.out.println(list.get(2));
         list.add(null);
+        List<String> l = new LinkedList<>();
+
+
+
+        MyLinkedList<String> list2 = new MyLinkedList<>();
+        list2.add("Java");
+        list2.add("is");
+        list2.add("not");
+        list2.add("easy to learn");
+
+        boolean b = list2.size() == 3;
+         list2.get(0).equals("Java");
+         list2.get(2).equals("I'm Done");
+        System.out.println(b);
     }
 }
