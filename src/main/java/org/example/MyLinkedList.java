@@ -14,20 +14,18 @@ public class MyLinkedList<T> {
 
     private Node<T> head; //  first node
     private int size;
+    private Node<T> tail;
 
 
     // add to end
     public void add(T value) {
         Node<T> newNode = new Node<>(value);
         if (head == null) {
-            head = newNode;
+            head = newNode; //in case of single element
+            tail = newNode;
         } else {
-            Node<T> current = head;
-            // to the very last node
-            while (current.next != null) {
-                current = current.next;
-            }
-            current.next = newNode;
+            tail.next = newNode;
+            tail = newNode;
         }
         size++;
     }
@@ -54,12 +52,17 @@ public class MyLinkedList<T> {
 
         if (index == 0) {
             head = head.next; // Just hop over the first one
+            if (head == null) {
+                tail = null;
+            }
         } else {
             Node<T> current = head;
             for (int i = 0; i < index - 1; i++) {
                 current = current.next;
-            }
-            // this points the "next" of the current node to the one AFTER the target
+
+                if (current.next == tail) {
+                    tail = current;
+                }}
             current.next = current.next.next;
         }
         size--;
