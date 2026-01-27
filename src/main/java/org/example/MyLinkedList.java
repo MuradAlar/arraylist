@@ -50,20 +50,28 @@ public class MyLinkedList<T> {
     public void remove(int index) {
         checkIndex(index);
 
+        // remove the very first node
         if (index == 0) {
-            head = head.next; // Just hop over the first one
+            head = head.next;
             if (head == null) {
-                tail = null;
+                tail = null; // empty
             }
         } else {
-            Node<T> current = head;
+            // remove a node in the middle or at the end
+            Node<T> prev = head;
             for (int i = 0; i < index - 1; i++) {
-                current = current.next;
+                prev = prev.next;
+            }
 
-                if (current.next == tail) {
-                    tail = current;
-                }}
-            current.next = current.next.next;
+            //  node to delete
+            Node<T> nodeRemove = prev.next;
+
+            if (nodeRemove == tail) {
+                tail = prev;
+            }
+
+            // connect prev to the node
+            prev.next = nodeRemove.next;
         }
         size--;
     }
